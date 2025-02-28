@@ -79,33 +79,31 @@ public:
         if (cols_ != other.rows_) {
             throw std::invalid_argument("");
         }
-        Matrix result(rows_, other.cols_);
+        Matrix tmp(rows_, other.cols_);
         for (int i = 0; i < rows_; ++i) {
             for (int j = 0; j < other.cols_; ++j) {
                 for (int k = 0; k < cols_; ++k) {
-                    result.matrix_[i][j] += matrix_[i][k] * other.matrix_[k][j];
+                    tmp.matrix_[i][j] += matrix_[i][k] * other.matrix_[k][j];
                 }
             }
         }
-        *this = result;
+        *this = tmp;
     }
 
     Matrix Transpose() const {
-        Matrix result(cols_, rows_);
+        Matrix tmp(cols_, rows_);
         for (int i = 0; i < rows_; ++i) {
             for (int j = 0; j < cols_; ++j) {
-                result.matrix_[j][i] = matrix_[i][j];
+                tmp.matrix_[j][i] = matrix_[i][j];
             }
         }
-        return result;
+        return tmp;
     }
 
     double Determinant() const {
         if (rows_ != cols_) {
             throw std::invalid_argument("Матрица не квадратная!");
         }
-
-        // Копируем матрицу, чтобы не изменять оригинальную
         std::vector<std::vector<double>> mat = matrix_;
         double det = 1.0;
 
@@ -120,14 +118,14 @@ public:
 
             if (pivot != i) {
                 std::swap(mat[i], mat[pivot]);
-                det *= -1; // Меняем знак определителя при перестановке строк
+                det *= -1;
             }
 
             if (mat[i][i] == 0) {
-                return 0; // Если ведущий элемент нулевой, определитель равен 0
+                return 0;
             }
 
-            det *= mat[i][i]; // Умножаем определитель на ведущий элемент
+            det *= mat[i][i];
 
             for (int j = i + 1; j < rows_; ++j) {
                 double factor = mat[j][i] / mat[i][i];
@@ -144,7 +142,7 @@ public:
         if (rows_ != cols_) {
             throw std::invalid_argument("Матрица не квадратная!!!!");
         }
-        Matrix result(rows_, cols_);
+        Matrix tmp(rows_, cols_);
         for (int i = 0; i < rows_; ++i) {
             for (int j = 0; j < cols_; ++j) {
                 Matrix subMat(rows_ - 1, cols_ - 1);
@@ -160,10 +158,10 @@ public:
                     subRow++;
                 }
                 double det = subMat.Determinant();
-                result(i, j) = ((i + j) % 2 == 0 ? 1 : -1) * det;
+                tmp(i, j) = ((i + j) % 2 == 0 ? 1 : -1) * det;
             }
         }
-        return result;
+        return tmp;
     }
 
     Matrix InverseMatrix() const {
@@ -187,27 +185,27 @@ public:
     }
 
     Matrix operator+(const Matrix& other) const {
-        Matrix result(*this);
-        result.SumMatrix(other);
-        return result;
+        Matrix tmp(*this);
+        tmp.SumMatrix(other);
+        return tmp;
     }
 
     Matrix operator-(const Matrix& other) const {
-        Matrix result(*this);
-        result.SubMatrix(other);
-        return result;
+        Matrix tmp(*this);
+        tmp.SubMatrix(other);
+        return tmp;
     }
 
     Matrix operator*(const Matrix& other) const {
-        Matrix result(*this);
-        result.MulMatrix(other);
-        return result;
+        Matrix tmp(*this);
+        tmp.MulMatrix(other);
+        return tmp;
     }
 
     Matrix operator*(const double num) const {
-        Matrix result(*this);
-        result.MulNumber(num);
-        return result;
+        Matrix tmp(*this);
+        tmp.MulNumber(num);
+        return tmp;
     }
 
     bool operator==(const Matrix& other) const {
@@ -258,7 +256,7 @@ public:
     }
 };
 
-int main() {
+int mainfff() {
     SetConsoleOutputCP(CP_UTF8);
 
     Matrix a(3, 3);
