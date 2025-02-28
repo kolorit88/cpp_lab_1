@@ -1,0 +1,6 @@
+# ninja log v6
+5	1486	7607976545601987	CMakeFiles/untitled1.dir/main.cpp.obj	28ffa5c099fb2610
+840	1003	7608070181198512	untitled1.exe	86a53cac950f84ab
+8	839	7608070172888613	CMakeFiles/untitled1.dir/test.cpp.obj	6465d2ce0e7db87f
+6	691	7624561646303865	build.ninja	8a2b0985b5d22d8
+8	1091	7608065749490201	CMakeFiles/untitled1.dir/matrix.cpp.obj	41e8b2701b144cc1
