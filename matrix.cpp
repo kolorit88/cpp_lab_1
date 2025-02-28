@@ -256,7 +256,7 @@ public:
     }
 };
 
-int mainfff() {
+int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     Matrix a(3, 3);
